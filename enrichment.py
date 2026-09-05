@@ -416,22 +416,22 @@ class OpticalfaultbacksidelaseragentEnrichmentSuite:
     def __init__(self):
         self.featuresengine = FeaturesEngine()
         self.backsidelaserfaultin = BacksideLaserFaultInjectionMappingEngine()
-        self.opticalfaultinjectio = OpticalFaultInjectionDepthProfilingEngine()
+        self.opticalfaultinjectiodepth = OpticalFaultInjectionDepthProfilingEngine()
         self.wavelengthdependentf = WavelengthdependentFaultInjectionAnalysisEngine()
         self.aesrsaopticalfaultin = AesrsaOpticalFaultInjectionCampaignEngine()
         self.opticalprobingforrev = OpticalProbingForReverseEngineeringEngine()
-        self.opticalfaultinjectio = OpticalFaultInjectionCountermeasureEvaluationEngine()
+        self.opticalfaultinjectiountm = OpticalFaultInjectionCountermeasureEvaluationEngine()
         self.multifocussimultaneo = MultifocusSimultaneousFaultInjectionEngine()
 
     def execute_all(self, primary_val: float = 1.5, secondary_val: float = 0.5) -> Dict[str, Any]:
         results = {}
         results["FeaturesEngine"] = self.featuresengine.evaluate(primary_val, secondary_val)
         results["BacksideLaserFaultInjectionMappingEngine"] = self.backsidelaserfaultin.evaluate(primary_val, secondary_val)
-        results["OpticalFaultInjectionDepthProfilingEngine"] = self.opticalfaultinjectio.evaluate(primary_val, secondary_val)
+        results["OpticalFaultInjectionDepthProfilingEngine"] = self.opticalfaultinjectiodepth.evaluate(primary_val, secondary_val)
         results["WavelengthdependentFaultInjectionAnalysisEngine"] = self.wavelengthdependentf.evaluate(primary_val, secondary_val)
         results["AesrsaOpticalFaultInjectionCampaignEngine"] = self.aesrsaopticalfaultin.evaluate(primary_val, secondary_val)
         results["OpticalProbingForReverseEngineeringEngine"] = self.opticalprobingforrev.evaluate(primary_val, secondary_val)
-        results["OpticalFaultInjectionCountermeasureEvaluationEngine"] = self.opticalfaultinjectio.evaluate(primary_val, secondary_val)
+        results["OpticalFaultInjectionCountermeasureEvaluationEngine"] = self.opticalfaultinjectiountm.evaluate(primary_val, secondary_val)
         results["MultifocusSimultaneousFaultInjectionEngine"] = self.multifocussimultaneo.evaluate(primary_val, secondary_val)
         return results
 
