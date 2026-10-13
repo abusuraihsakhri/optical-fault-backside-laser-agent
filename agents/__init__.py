@@ -1,7 +1,2 @@
-"""
-Optical Fault Backside Laser Agent — Enterprise Automated Analytical Suite.
-Domain: Clinical & Biomedical AI
-Standard: CAP / CLSI / ISO Standards
-
-"""
-__version__ = "3.0.0-ENTERPRISE"
+"""Rule-based optical fault telemetry demonstration package."""
+__version__ = "2.0.1"
