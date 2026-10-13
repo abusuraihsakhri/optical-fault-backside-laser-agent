@@ -58,8 +58,8 @@ def test_csv_boolean_malformed():
 def test_cli_batch_preserves_false_critical_flag(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     (tmp_path / "input.csv").write_text(
-        "task_id,target_identifier,primary_metric,secondary_metric,is_critical_flag,status_descriptor\\n"
-        "T1,KEY,10,2,False,NOMINAL\\n", encoding="utf-8"
+        "task_id,target_identifier,primary_metric,secondary_metric,is_critical_flag,status_descriptor\n"
+        "T1,KEY,10,2,False,NOMINAL\n", encoding="utf-8"
     )
     assert main(["batch", "-i", "input.csv", "-o", "output.csv"]) == 0
     result = (tmp_path / "output.csv").read_text(encoding="utf-8")
