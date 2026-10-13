@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Optical Fault Backside Laser Engine API",
-    "description": "Enterprise Distributed Component Platform (Clinical & Cryptographic AI) adhering to CAP / CLSI / NIST Standards.",
-    "version": "3.0.0-ENTERPRISE",
+    "description": "Demonstration classification service; no certified physical, clinical, or security validation.",
+    "version": "2.0.1",
     "contact": {
       "name": "Dr. Abu Suraih Sakhri",
       "url": "https://github.com/abusuraihsakhri"
@@ -22,10 +22,10 @@
     },
     "/metrics": {
       "get": {
-        "summary": "Prometheus operational metrics",
+        "summary": "JSON in-memory processing counters",
         "responses": {
           "200": {
-            "description": "Prometheus text metrics"
+            "description": "JSON metrics object"
           }
         }
       }
@@ -76,7 +76,7 @@
     },
     "/api/chat": {
       "post": {
-        "summary": "Air-gapped supervisory conversational assistant",
+        "summary": "Deterministic mock query response",
         "requestBody": {
           "content": {
             "application/json": {
@@ -103,7 +103,7 @@
     },
     "/api/audit/logs": {
       "get": {
-        "summary": "Retrieve and cryptographically verify HMAC audit trail",
+        "summary": "View in-memory audit record metadata and verify HMAC signatures",
         "responses": {
           "200": {
             "description": "Cryptographic audit trail"

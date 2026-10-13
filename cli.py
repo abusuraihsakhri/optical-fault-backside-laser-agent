@@ -28,6 +28,16 @@ def _safe_resolve_path(path_str: str, must_exist: bool = False) -> Path:
     return path
 
 
+def _parse_csv_boolean(value: str) -> bool:
+    """Parse textual CSV booleans without treating 'False' as truthy."""
+    normalized = str(value or "").strip().lower()
+    if normalized in {"true", "t", "yes", "y", "1"}:
+        return True
+    if normalized in {"false", "f", "no", "n", "0", ""}:
+        return False
+    raise ValueError(f"Invalid CSV boolean: {value!r}")
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="optical-fault-backside-laser-agent", description="Optical Fault Backside Laser Agent")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -104,7 +114,7 @@ def main(argv=None):
             fieldnames = list(reader.fieldnames or [])
             rows = list(reader)
 
-        out_fields = fieldnames + ["overall_urgency", "integrity_status", "total_alerts", "audit_hash"]
+        out_fields = list(dict.fromkeys(fieldnames + ["overall_urgency", "integrity_status", "total_alerts", "audit_hash"]))
         out_rows = []
         for r in rows:
             payload = SystemTaskPayload(
@@ -113,7 +123,7 @@ def main(argv=None):
                 primary_metric=float(r.get("primary_metric", 15.0)),
                 secondary_metric=float(r.get("secondary_metric", 5.0)),
                 status_descriptor=r.get("status_descriptor", "NOMINAL"),
-                is_critical_flag=bool(r.get("is_critical_flag", False)),
+                is_critical_flag=_parse_csv_boolean(r.get("is_critical_flag", "")),
             )
             dossier = supervisor.process_task(payload)
             row_dict = dict(r)

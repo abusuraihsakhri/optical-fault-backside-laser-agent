@@ -1,27 +1,39 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "optical-fault-backside-laser-engine"
-version = "2.0.0"
-description = "Backside Silicon Laser Fault Injection Optical Emission Engine"
+version = "2.0.1"
+description = "Rule-based optical fault telemetry demonstration and audit API"
 readme = "README.md"
-authors = [{ name = "Dr. Abu Suraih Sakhri", email = "abusuraih@example.com" }]
+requires-python = ">=3.10"
 license = { text = "MIT" }
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Topic :: Security/Cryptography",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
 ]
-requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "fastapi>=0.111,<1",
+    "pydantic>=2,<3",
+    "uvicorn>=0.30,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1"]
 
 [project.scripts]
 optical-fault-backside-laser-engine = "optical_fault_agent.cli:main"
+optical-fault-backside-laser-agent = "cli:main"
 
 [project.urls]
-Homepage = "https://github.com/abusuraihsakhri/optical-fault-backside-laser-engine"
-Repository = "https://github.com/abusuraihsakhri/optical-fault-backside-laser-engine.git"
+Homepage = "https://github.com/abusuraihsakhri/optical-fault-backside-laser-agent"
+Repository = "https://github.com/abusuraihsakhri/optical-fault-backside-laser-agent"
+
+[tool.setuptools]
+py-modules = ["cli", "enrichment", "simulator"]
+
+[tool.setuptools.packages.find]
+include = ["agents", "agents.*", "optical_fault_agent", "optical_fault_agent.*"]
